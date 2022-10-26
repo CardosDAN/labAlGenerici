@@ -2,7 +2,8 @@ import numpy as np
 import random as rd
 from random import randint
 
-string = open('knapsack_instances/instances_large/instance_large_0.txt').read()
+
+string = open('knapsack_instances/instances_small/instance_small_0.txt').read()
 
 file_vars = {}
 values = [x.strip() for x in string.split('\n')]
@@ -28,7 +29,7 @@ value = l_objects
 knapsack_threshold = l_max_weight
 
 
-solutions_per_pop = 8
+solutions_per_pop = l_no_objects
 pop_size = (solutions_per_pop, item_number)
 print('Population size = {}'.format(pop_size))
 initial_population = np.random.randint(2, size=pop_size)
@@ -59,6 +60,7 @@ def selection(fitness, num_parents, population):
     return parents
 
 
+#one point crossover
 def crossover(parents, num_offsprings):
     offsprings = np.empty((num_offsprings, parents.shape[1]))
     crossover_point = int(parents.shape[1] / 2)
@@ -78,6 +80,8 @@ def crossover(parents, num_offsprings):
     return offsprings
 
 
+# mutatie e facuta random
+# tehnica bit-flip
 def mutation(offsprings):
     mutants = np.empty(offsprings.shape)
     mutation_rate = 0.4
@@ -120,4 +124,5 @@ if __name__ == '__main__':
                                            knapsack_threshold)
     print('The optimized parameters for the given inputs are: \n{}'.format(parameters))
     selected_items = item_number * parameters
+
 
