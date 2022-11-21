@@ -80,7 +80,7 @@ def crossover(parents, num_offsprings):
     return offsprings
 
 
-# mutatie e facuta random
+
 # tehnica bit-flip
 def mutation(offsprings):
     mutants = np.empty(offsprings.shape)
